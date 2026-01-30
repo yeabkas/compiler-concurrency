@@ -81,7 +81,10 @@ def p_error(p):
 
 def build_parser():
     lex = lexmod.build_lexer()
-    parser = yacc.yacc(module=__import__(__name__))
+    # Ensure we pass the actual module object (not the top-level package)
+    import importlib
+    module = importlib.import_module(__name__)
+    parser = yacc.yacc(module=module)
     return parser, lex
 
 if __name__ == '__main__':

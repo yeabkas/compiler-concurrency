@@ -1,0 +1,739 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Unused terminals:
+
+    BOOL
+
+Grammar
+
+Rule 0     S' -> program
+Rule 1     program -> statements
+Rule 2     statements -> statements statement
+Rule 3     statements -> statement
+Rule 4     statement -> INT ID ASSIGN expression SEMI
+Rule 5     statement -> CHAN LT type GT ID SEMI
+Rule 6     statement -> PARALLEL LBRACE statements RBRACE
+Rule 7     statement -> SPAWN LPAREN expression RPAREN SEMI
+Rule 8     statement -> LOCK LPAREN ID RPAREN SEMI
+Rule 9     statement -> UNLOCK LPAREN ID RPAREN SEMI
+Rule 10    statement -> ATOMIC LBRACE statements RBRACE
+Rule 11    statement -> SEND LPAREN ID COMMA expression RPAREN SEMI
+Rule 12    statement -> ID ASSIGN RECV LPAREN ID RPAREN SEMI
+Rule 13    statement -> ID ASSIGN expression SEMI
+Rule 14    expression -> NUMBER
+Rule 15    expression -> ID
+Rule 16    type -> INT
+
+Terminals, with rules where they appear
+
+ASSIGN               : 4 12 13
+ATOMIC               : 10
+BOOL                 : 
+CHAN                 : 5
+COMMA                : 11
+GT                   : 5
+ID                   : 4 5 8 9 11 12 12 13 15
+INT                  : 4 16
+LBRACE               : 6 10
+LOCK                 : 8
+LPAREN               : 7 8 9 11 12
+LT                   : 5
+NUMBER               : 14
+PARALLEL             : 6
+RBRACE               : 6 10
+RECV                 : 12
+RPAREN               : 7 8 9 11 12
+SEMI                 : 4 5 7 8 9 11 12 13
+SEND                 : 11
+SPAWN                : 7
+UNLOCK               : 9
+error                : 
+
+Nonterminals, with rules where they appear
+
+expression           : 4 7 11 13
+program              : 0
+statement            : 2 3
+statements           : 1 2 6 10
+type                 : 5
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . program
+    (1) program -> . statements
+    (2) statements -> . statements statement
+    (3) statements -> . statement
+    (4) statement -> . INT ID ASSIGN expression SEMI
+    (5) statement -> . CHAN LT type GT ID SEMI
+    (6) statement -> . PARALLEL LBRACE statements RBRACE
+    (7) statement -> . SPAWN LPAREN expression RPAREN SEMI
+    (8) statement -> . LOCK LPAREN ID RPAREN SEMI
+    (9) statement -> . UNLOCK LPAREN ID RPAREN SEMI
+    (10) statement -> . ATOMIC LBRACE statements RBRACE
+    (11) statement -> . SEND LPAREN ID COMMA expression RPAREN SEMI
+    (12) statement -> . ID ASSIGN RECV LPAREN ID RPAREN SEMI
+    (13) statement -> . ID ASSIGN expression SEMI
+
+    INT             shift and go to state 4
+    CHAN            shift and go to state 6
+    PARALLEL        shift and go to state 7
+    SPAWN           shift and go to state 8
+    LOCK            shift and go to state 9
+    UNLOCK          shift and go to state 10
+    ATOMIC          shift and go to state 11
+    SEND            shift and go to state 12
+    ID              shift and go to state 5
+
+    program                        shift and go to state 1
+    statements                     shift and go to state 2
+    statement                      shift and go to state 3
+
+state 1
+
+    (0) S' -> program .
+
+
+
+state 2
+
+    (1) program -> statements .
+    (2) statements -> statements . statement
+    (4) statement -> . INT ID ASSIGN expression SEMI
+    (5) statement -> . CHAN LT type GT ID SEMI
+    (6) statement -> . PARALLEL LBRACE statements RBRACE
+    (7) statement -> . SPAWN LPAREN expression RPAREN SEMI
+    (8) statement -> . LOCK LPAREN ID RPAREN SEMI
+    (9) statement -> . UNLOCK LPAREN ID RPAREN SEMI
+    (10) statement -> . ATOMIC LBRACE statements RBRACE
+    (11) statement -> . SEND LPAREN ID COMMA expression RPAREN SEMI
+    (12) statement -> . ID ASSIGN RECV LPAREN ID RPAREN SEMI
+    (13) statement -> . ID ASSIGN expression SEMI
+
+    $end            reduce using rule 1 (program -> statements .)
+    INT             shift and go to state 4
+    CHAN            shift and go to state 6
+    PARALLEL        shift and go to state 7
+    SPAWN           shift and go to state 8
+    LOCK            shift and go to state 9
+    UNLOCK          shift and go to state 10
+    ATOMIC          shift and go to state 11
+    SEND            shift and go to state 12
+    ID              shift and go to state 5
+
+    statement                      shift and go to state 13
+
+state 3
+
+    (3) statements -> statement .
+
+    INT             reduce using rule 3 (statements -> statement .)
+    CHAN            reduce using rule 3 (statements -> statement .)
+    PARALLEL        reduce using rule 3 (statements -> statement .)
+    SPAWN           reduce using rule 3 (statements -> statement .)
+    LOCK            reduce using rule 3 (statements -> statement .)
+    UNLOCK          reduce using rule 3 (statements -> statement .)
+    ATOMIC          reduce using rule 3 (statements -> statement .)
+    SEND            reduce using rule 3 (statements -> statement .)
+    ID              reduce using rule 3 (statements -> statement .)
+    $end            reduce using rule 3 (statements -> statement .)
+    RBRACE          reduce using rule 3 (statements -> statement .)
+
+
+state 4
+
+    (4) statement -> INT . ID ASSIGN expression SEMI
+
+    ID              shift and go to state 14
+
+
+state 5
+
+    (12) statement -> ID . ASSIGN RECV LPAREN ID RPAREN SEMI
+    (13) statement -> ID . ASSIGN expression SEMI
+
+    ASSIGN          shift and go to state 15
+
+
+state 6
+
+    (5) statement -> CHAN . LT type GT ID SEMI
+
+    LT              shift and go to state 16
+
+
+state 7
+
+    (6) statement -> PARALLEL . LBRACE statements RBRACE
+
+    LBRACE          shift and go to state 17
+
+
+state 8
+
+    (7) statement -> SPAWN . LPAREN expression RPAREN SEMI
+
+    LPAREN          shift and go to state 18
+
+
+state 9
+
+    (8) statement -> LOCK . LPAREN ID RPAREN SEMI
+
+    LPAREN          shift and go to state 19
+
+
+state 10
+
+    (9) statement -> UNLOCK . LPAREN ID RPAREN SEMI
+
+    LPAREN          shift and go to state 20
+
+
+state 11
+
+    (10) statement -> ATOMIC . LBRACE statements RBRACE
+
+    LBRACE          shift and go to state 21
+
+
+state 12
+
+    (11) statement -> SEND . LPAREN ID COMMA expression RPAREN SEMI
+
+    LPAREN          shift and go to state 22
+
+
+state 13
+
+    (2) statements -> statements statement .
+
+    INT             reduce using rule 2 (statements -> statements statement .)
+    CHAN            reduce using rule 2 (statements -> statements statement .)
+    PARALLEL        reduce using rule 2 (statements -> statements statement .)
+    SPAWN           reduce using rule 2 (statements -> statements statement .)
+    LOCK            reduce using rule 2 (statements -> statements statement .)
+    UNLOCK          reduce using rule 2 (statements -> statements statement .)
+    ATOMIC          reduce using rule 2 (statements -> statements statement .)
+    SEND            reduce using rule 2 (statements -> statements statement .)
+    ID              reduce using rule 2 (statements -> statements statement .)
+    $end            reduce using rule 2 (statements -> statements statement .)
+    RBRACE          reduce using rule 2 (statements -> statements statement .)
+
+
+state 14
+
+    (4) statement -> INT ID . ASSIGN expression SEMI
+
+    ASSIGN          shift and go to state 23
+
+
+state 15
+
+    (12) statement -> ID ASSIGN . RECV LPAREN ID RPAREN SEMI
+    (13) statement -> ID ASSIGN . expression SEMI
+    (14) expression -> . NUMBER
+    (15) expression -> . ID
+
+    RECV            shift and go to state 25
+    NUMBER          shift and go to state 27
+    ID              shift and go to state 24
+
+    expression                     shift and go to state 26
+
+state 16
+
+    (5) statement -> CHAN LT . type GT ID SEMI
+    (16) type -> . INT
+
+    INT             shift and go to state 29
+
+    type                           shift and go to state 28
+
+state 17
+
+    (6) statement -> PARALLEL LBRACE . statements RBRACE
+    (2) statements -> . statements statement
+    (3) statements -> . statement
+    (4) statement -> . INT ID ASSIGN expression SEMI
+    (5) statement -> . CHAN LT type GT ID SEMI
+    (6) statement -> . PARALLEL LBRACE statements RBRACE
+    (7) statement -> . SPAWN LPAREN expression RPAREN SEMI
+    (8) statement -> . LOCK LPAREN ID RPAREN SEMI
+    (9) statement -> . UNLOCK LPAREN ID RPAREN SEMI
+    (10) statement -> . ATOMIC LBRACE statements RBRACE
+    (11) statement -> . SEND LPAREN ID COMMA expression RPAREN SEMI
+    (12) statement -> . ID ASSIGN RECV LPAREN ID RPAREN SEMI
+    (13) statement -> . ID ASSIGN expression SEMI
+
+    INT             shift and go to state 4
+    CHAN            shift and go to state 6
+    PARALLEL        shift and go to state 7
+    SPAWN           shift and go to state 8
+    LOCK            shift and go to state 9
+    UNLOCK          shift and go to state 10
+    ATOMIC          shift and go to state 11
+    SEND            shift and go to state 12
+    ID              shift and go to state 5
+
+    statements                     shift and go to state 30
+    statement                      shift and go to state 3
+
+state 18
+
+    (7) statement -> SPAWN LPAREN . expression RPAREN SEMI
+    (14) expression -> . NUMBER
+    (15) expression -> . ID
+
+    NUMBER          shift and go to state 27
+    ID              shift and go to state 24
+
+    expression                     shift and go to state 31
+
+state 19
+
+    (8) statement -> LOCK LPAREN . ID RPAREN SEMI
+
+    ID              shift and go to state 32
+
+
+state 20
+
+    (9) statement -> UNLOCK LPAREN . ID RPAREN SEMI
+
+    ID              shift and go to state 33
+
+
+state 21
+
+    (10) statement -> ATOMIC LBRACE . statements RBRACE
+    (2) statements -> . statements statement
+    (3) statements -> . statement
+    (4) statement -> . INT ID ASSIGN expression SEMI
+    (5) statement -> . CHAN LT type GT ID SEMI
+    (6) statement -> . PARALLEL LBRACE statements RBRACE
+    (7) statement -> . SPAWN LPAREN expression RPAREN SEMI
+    (8) statement -> . LOCK LPAREN ID RPAREN SEMI
+    (9) statement -> . UNLOCK LPAREN ID RPAREN SEMI
+    (10) statement -> . ATOMIC LBRACE statements RBRACE
+    (11) statement -> . SEND LPAREN ID COMMA expression RPAREN SEMI
+    (12) statement -> . ID ASSIGN RECV LPAREN ID RPAREN SEMI
+    (13) statement -> . ID ASSIGN expression SEMI
+
+    INT             shift and go to state 4
+    CHAN            shift and go to state 6
+    PARALLEL        shift and go to state 7
+    SPAWN           shift and go to state 8
+    LOCK            shift and go to state 9
+    UNLOCK          shift and go to state 10
+    ATOMIC          shift and go to state 11
+    SEND            shift and go to state 12
+    ID              shift and go to state 5
+
+    statements                     shift and go to state 34
+    statement                      shift and go to state 3
+
+state 22
+
+    (11) statement -> SEND LPAREN . ID COMMA expression RPAREN SEMI
+
+    ID              shift and go to state 35
+
+
+state 23
+
+    (4) statement -> INT ID ASSIGN . expression SEMI
+    (14) expression -> . NUMBER
+    (15) expression -> . ID
+
+    NUMBER          shift and go to state 27
+    ID              shift and go to state 24
+
+    expression                     shift and go to state 36
+
+state 24
+
+    (15) expression -> ID .
+
+    SEMI            reduce using rule 15 (expression -> ID .)
+    RPAREN          reduce using rule 15 (expression -> ID .)
+
+
+state 25
+
+    (12) statement -> ID ASSIGN RECV . LPAREN ID RPAREN SEMI
+
+    LPAREN          shift and go to state 37
+
+
+state 26
+
+    (13) statement -> ID ASSIGN expression . SEMI
+
+    SEMI            shift and go to state 38
+
+
+state 27
+
+    (14) expression -> NUMBER .
+
+    SEMI            reduce using rule 14 (expression -> NUMBER .)
+    RPAREN          reduce using rule 14 (expression -> NUMBER .)
+
+
+state 28
+
+    (5) statement -> CHAN LT type . GT ID SEMI
+
+    GT              shift and go to state 39
+
+
+state 29
+
+    (16) type -> INT .
+
+    GT              reduce using rule 16 (type -> INT .)
+
+
+state 30
+
+    (6) statement -> PARALLEL LBRACE statements . RBRACE
+    (2) statements -> statements . statement
+    (4) statement -> . INT ID ASSIGN expression SEMI
+    (5) statement -> . CHAN LT type GT ID SEMI
+    (6) statement -> . PARALLEL LBRACE statements RBRACE
+    (7) statement -> . SPAWN LPAREN expression RPAREN SEMI
+    (8) statement -> . LOCK LPAREN ID RPAREN SEMI
+    (9) statement -> . UNLOCK LPAREN ID RPAREN SEMI
+    (10) statement -> . ATOMIC LBRACE statements RBRACE
+    (11) statement -> . SEND LPAREN ID COMMA expression RPAREN SEMI
+    (12) statement -> . ID ASSIGN RECV LPAREN ID RPAREN SEMI
+    (13) statement -> . ID ASSIGN expression SEMI
+
+    RBRACE          shift and go to state 40
+    INT             shift and go to state 4
+    CHAN            shift and go to state 6
+    PARALLEL        shift and go to state 7
+    SPAWN           shift and go to state 8
+    LOCK            shift and go to state 9
+    UNLOCK          shift and go to state 10
+    ATOMIC          shift and go to state 11
+    SEND            shift and go to state 12
+    ID              shift and go to state 5
+
+    statement                      shift and go to state 13
+
+state 31
+
+    (7) statement -> SPAWN LPAREN expression . RPAREN SEMI
+
+    RPAREN          shift and go to state 41
+
+
+state 32
+
+    (8) statement -> LOCK LPAREN ID . RPAREN SEMI
+
+    RPAREN          shift and go to state 42
+
+
+state 33
+
+    (9) statement -> UNLOCK LPAREN ID . RPAREN SEMI
+
+    RPAREN          shift and go to state 43
+
+
+state 34
+
+    (10) statement -> ATOMIC LBRACE statements . RBRACE
+    (2) statements -> statements . statement
+    (4) statement -> . INT ID ASSIGN expression SEMI
+    (5) statement -> . CHAN LT type GT ID SEMI
+    (6) statement -> . PARALLEL LBRACE statements RBRACE
+    (7) statement -> . SPAWN LPAREN expression RPAREN SEMI
+    (8) statement -> . LOCK LPAREN ID RPAREN SEMI
+    (9) statement -> . UNLOCK LPAREN ID RPAREN SEMI
+    (10) statement -> . ATOMIC LBRACE statements RBRACE
+    (11) statement -> . SEND LPAREN ID COMMA expression RPAREN SEMI
+    (12) statement -> . ID ASSIGN RECV LPAREN ID RPAREN SEMI
+    (13) statement -> . ID ASSIGN expression SEMI
+
+    RBRACE          shift and go to state 44
+    INT             shift and go to state 4
+    CHAN            shift and go to state 6
+    PARALLEL        shift and go to state 7
+    SPAWN           shift and go to state 8
+    LOCK            shift and go to state 9
+    UNLOCK          shift and go to state 10
+    ATOMIC          shift and go to state 11
+    SEND            shift and go to state 12
+    ID              shift and go to state 5
+
+    statement                      shift and go to state 13
+
+state 35
+
+    (11) statement -> SEND LPAREN ID . COMMA expression RPAREN SEMI
+
+    COMMA           shift and go to state 45
+
+
+state 36
+
+    (4) statement -> INT ID ASSIGN expression . SEMI
+
+    SEMI            shift and go to state 46
+
+
+state 37
+
+    (12) statement -> ID ASSIGN RECV LPAREN . ID RPAREN SEMI
+
+    ID              shift and go to state 47
+
+
+state 38
+
+    (13) statement -> ID ASSIGN expression SEMI .
+
+    INT             reduce using rule 13 (statement -> ID ASSIGN expression SEMI .)
+    CHAN            reduce using rule 13 (statement -> ID ASSIGN expression SEMI .)
+    PARALLEL        reduce using rule 13 (statement -> ID ASSIGN expression SEMI .)
+    SPAWN           reduce using rule 13 (statement -> ID ASSIGN expression SEMI .)
+    LOCK            reduce using rule 13 (statement -> ID ASSIGN expression SEMI .)
+    UNLOCK          reduce using rule 13 (statement -> ID ASSIGN expression SEMI .)
+    ATOMIC          reduce using rule 13 (statement -> ID ASSIGN expression SEMI .)
+    SEND            reduce using rule 13 (statement -> ID ASSIGN expression SEMI .)
+    ID              reduce using rule 13 (statement -> ID ASSIGN expression SEMI .)
+    $end            reduce using rule 13 (statement -> ID ASSIGN expression SEMI .)
+    RBRACE          reduce using rule 13 (statement -> ID ASSIGN expression SEMI .)
+
+
+state 39
+
+    (5) statement -> CHAN LT type GT . ID SEMI
+
+    ID              shift and go to state 48
+
+
+state 40
+
+    (6) statement -> PARALLEL LBRACE statements RBRACE .
+
+    INT             reduce using rule 6 (statement -> PARALLEL LBRACE statements RBRACE .)
+    CHAN            reduce using rule 6 (statement -> PARALLEL LBRACE statements RBRACE .)
+    PARALLEL        reduce using rule 6 (statement -> PARALLEL LBRACE statements RBRACE .)
+    SPAWN           reduce using rule 6 (statement -> PARALLEL LBRACE statements RBRACE .)
+    LOCK            reduce using rule 6 (statement -> PARALLEL LBRACE statements RBRACE .)
+    UNLOCK          reduce using rule 6 (statement -> PARALLEL LBRACE statements RBRACE .)
+    ATOMIC          reduce using rule 6 (statement -> PARALLEL LBRACE statements RBRACE .)
+    SEND            reduce using rule 6 (statement -> PARALLEL LBRACE statements RBRACE .)
+    ID              reduce using rule 6 (statement -> PARALLEL LBRACE statements RBRACE .)
+    $end            reduce using rule 6 (statement -> PARALLEL LBRACE statements RBRACE .)
+    RBRACE          reduce using rule 6 (statement -> PARALLEL LBRACE statements RBRACE .)
+
+
+state 41
+
+    (7) statement -> SPAWN LPAREN expression RPAREN . SEMI
+
+    SEMI            shift and go to state 49
+
+
+state 42
+
+    (8) statement -> LOCK LPAREN ID RPAREN . SEMI
+
+    SEMI            shift and go to state 50
+
+
+state 43
+
+    (9) statement -> UNLOCK LPAREN ID RPAREN . SEMI
+
+    SEMI            shift and go to state 51
+
+
+state 44
+
+    (10) statement -> ATOMIC LBRACE statements RBRACE .
+
+    INT             reduce using rule 10 (statement -> ATOMIC LBRACE statements RBRACE .)
+    CHAN            reduce using rule 10 (statement -> ATOMIC LBRACE statements RBRACE .)
+    PARALLEL        reduce using rule 10 (statement -> ATOMIC LBRACE statements RBRACE .)
+    SPAWN           reduce using rule 10 (statement -> ATOMIC LBRACE statements RBRACE .)
+    LOCK            reduce using rule 10 (statement -> ATOMIC LBRACE statements RBRACE .)
+    UNLOCK          reduce using rule 10 (statement -> ATOMIC LBRACE statements RBRACE .)
+    ATOMIC          reduce using rule 10 (statement -> ATOMIC LBRACE statements RBRACE .)
+    SEND            reduce using rule 10 (statement -> ATOMIC LBRACE statements RBRACE .)
+    ID              reduce using rule 10 (statement -> ATOMIC LBRACE statements RBRACE .)
+    $end            reduce using rule 10 (statement -> ATOMIC LBRACE statements RBRACE .)
+    RBRACE          reduce using rule 10 (statement -> ATOMIC LBRACE statements RBRACE .)
+
+
+state 45
+
+    (11) statement -> SEND LPAREN ID COMMA . expression RPAREN SEMI
+    (14) expression -> . NUMBER
+    (15) expression -> . ID
+
+    NUMBER          shift and go to state 27
+    ID              shift and go to state 24
+
+    expression                     shift and go to state 52
+
+state 46
+
+    (4) statement -> INT ID ASSIGN expression SEMI .
+
+    INT             reduce using rule 4 (statement -> INT ID ASSIGN expression SEMI .)
+    CHAN            reduce using rule 4 (statement -> INT ID ASSIGN expression SEMI .)
+    PARALLEL        reduce using rule 4 (statement -> INT ID ASSIGN expression SEMI .)
+    SPAWN           reduce using rule 4 (statement -> INT ID ASSIGN expression SEMI .)
+    LOCK            reduce using rule 4 (statement -> INT ID ASSIGN expression SEMI .)
+    UNLOCK          reduce using rule 4 (statement -> INT ID ASSIGN expression SEMI .)
+    ATOMIC          reduce using rule 4 (statement -> INT ID ASSIGN expression SEMI .)
+    SEND            reduce using rule 4 (statement -> INT ID ASSIGN expression SEMI .)
+    ID              reduce using rule 4 (statement -> INT ID ASSIGN expression SEMI .)
+    $end            reduce using rule 4 (statement -> INT ID ASSIGN expression SEMI .)
+    RBRACE          reduce using rule 4 (statement -> INT ID ASSIGN expression SEMI .)
+
+
+state 47
+
+    (12) statement -> ID ASSIGN RECV LPAREN ID . RPAREN SEMI
+
+    RPAREN          shift and go to state 53
+
+
+state 48
+
+    (5) statement -> CHAN LT type GT ID . SEMI
+
+    SEMI            shift and go to state 54
+
+
+state 49
+
+    (7) statement -> SPAWN LPAREN expression RPAREN SEMI .
+
+    INT             reduce using rule 7 (statement -> SPAWN LPAREN expression RPAREN SEMI .)
+    CHAN            reduce using rule 7 (statement -> SPAWN LPAREN expression RPAREN SEMI .)
+    PARALLEL        reduce using rule 7 (statement -> SPAWN LPAREN expression RPAREN SEMI .)
+    SPAWN           reduce using rule 7 (statement -> SPAWN LPAREN expression RPAREN SEMI .)
+    LOCK            reduce using rule 7 (statement -> SPAWN LPAREN expression RPAREN SEMI .)
+    UNLOCK          reduce using rule 7 (statement -> SPAWN LPAREN expression RPAREN SEMI .)
+    ATOMIC          reduce using rule 7 (statement -> SPAWN LPAREN expression RPAREN SEMI .)
+    SEND            reduce using rule 7 (statement -> SPAWN LPAREN expression RPAREN SEMI .)
+    ID              reduce using rule 7 (statement -> SPAWN LPAREN expression RPAREN SEMI .)
+    $end            reduce using rule 7 (statement -> SPAWN LPAREN expression RPAREN SEMI .)
+    RBRACE          reduce using rule 7 (statement -> SPAWN LPAREN expression RPAREN SEMI .)
+
+
+state 50
+
+    (8) statement -> LOCK LPAREN ID RPAREN SEMI .
+
+    INT             reduce using rule 8 (statement -> LOCK LPAREN ID RPAREN SEMI .)
+    CHAN            reduce using rule 8 (statement -> LOCK LPAREN ID RPAREN SEMI .)
+    PARALLEL        reduce using rule 8 (statement -> LOCK LPAREN ID RPAREN SEMI .)
+    SPAWN           reduce using rule 8 (statement -> LOCK LPAREN ID RPAREN SEMI .)
+    LOCK            reduce using rule 8 (statement -> LOCK LPAREN ID RPAREN SEMI .)
+    UNLOCK          reduce using rule 8 (statement -> LOCK LPAREN ID RPAREN SEMI .)
+    ATOMIC          reduce using rule 8 (statement -> LOCK LPAREN ID RPAREN SEMI .)
+    SEND            reduce using rule 8 (statement -> LOCK LPAREN ID RPAREN SEMI .)
+    ID              reduce using rule 8 (statement -> LOCK LPAREN ID RPAREN SEMI .)
+    $end            reduce using rule 8 (statement -> LOCK LPAREN ID RPAREN SEMI .)
+    RBRACE          reduce using rule 8 (statement -> LOCK LPAREN ID RPAREN SEMI .)
+
+
+state 51
+
+    (9) statement -> UNLOCK LPAREN ID RPAREN SEMI .
+
+    INT             reduce using rule 9 (statement -> UNLOCK LPAREN ID RPAREN SEMI .)
+    CHAN            reduce using rule 9 (statement -> UNLOCK LPAREN ID RPAREN SEMI .)
+    PARALLEL        reduce using rule 9 (statement -> UNLOCK LPAREN ID RPAREN SEMI .)
+    SPAWN           reduce using rule 9 (statement -> UNLOCK LPAREN ID RPAREN SEMI .)
+    LOCK            reduce using rule 9 (statement -> UNLOCK LPAREN ID RPAREN SEMI .)
+    UNLOCK          reduce using rule 9 (statement -> UNLOCK LPAREN ID RPAREN SEMI .)
+    ATOMIC          reduce using rule 9 (statement -> UNLOCK LPAREN ID RPAREN SEMI .)
+    SEND            reduce using rule 9 (statement -> UNLOCK LPAREN ID RPAREN SEMI .)
+    ID              reduce using rule 9 (statement -> UNLOCK LPAREN ID RPAREN SEMI .)
+    $end            reduce using rule 9 (statement -> UNLOCK LPAREN ID RPAREN SEMI .)
+    RBRACE          reduce using rule 9 (statement -> UNLOCK LPAREN ID RPAREN SEMI .)
+
+
+state 52
+
+    (11) statement -> SEND LPAREN ID COMMA expression . RPAREN SEMI
+
+    RPAREN          shift and go to state 55
+
+
+state 53
+
+    (12) statement -> ID ASSIGN RECV LPAREN ID RPAREN . SEMI
+
+    SEMI            shift and go to state 56
+
+
+state 54
+
+    (5) statement -> CHAN LT type GT ID SEMI .
+
+    INT             reduce using rule 5 (statement -> CHAN LT type GT ID SEMI .)
+    CHAN            reduce using rule 5 (statement -> CHAN LT type GT ID SEMI .)
+    PARALLEL        reduce using rule 5 (statement -> CHAN LT type GT ID SEMI .)
+    SPAWN           reduce using rule 5 (statement -> CHAN LT type GT ID SEMI .)
+    LOCK            reduce using rule 5 (statement -> CHAN LT type GT ID SEMI .)
+    UNLOCK          reduce using rule 5 (statement -> CHAN LT type GT ID SEMI .)
+    ATOMIC          reduce using rule 5 (statement -> CHAN LT type GT ID SEMI .)
+    SEND            reduce using rule 5 (statement -> CHAN LT type GT ID SEMI .)
+    ID              reduce using rule 5 (statement -> CHAN LT type GT ID SEMI .)
+    $end            reduce using rule 5 (statement -> CHAN LT type GT ID SEMI .)
+    RBRACE          reduce using rule 5 (statement -> CHAN LT type GT ID SEMI .)
+
+
+state 55
+
+    (11) statement -> SEND LPAREN ID COMMA expression RPAREN . SEMI
+
+    SEMI            shift and go to state 57
+
+
+state 56
+
+    (12) statement -> ID ASSIGN RECV LPAREN ID RPAREN SEMI .
+
+    INT             reduce using rule 12 (statement -> ID ASSIGN RECV LPAREN ID RPAREN SEMI .)
+    CHAN            reduce using rule 12 (statement -> ID ASSIGN RECV LPAREN ID RPAREN SEMI .)
+    PARALLEL        reduce using rule 12 (statement -> ID ASSIGN RECV LPAREN ID RPAREN SEMI .)
+    SPAWN           reduce using rule 12 (statement -> ID ASSIGN RECV LPAREN ID RPAREN SEMI .)
+    LOCK            reduce using rule 12 (statement -> ID ASSIGN RECV LPAREN ID RPAREN SEMI .)
+    UNLOCK          reduce using rule 12 (statement -> ID ASSIGN RECV LPAREN ID RPAREN SEMI .)
+    ATOMIC          reduce using rule 12 (statement -> ID ASSIGN RECV LPAREN ID RPAREN SEMI .)
+    SEND            reduce using rule 12 (statement -> ID ASSIGN RECV LPAREN ID RPAREN SEMI .)
+    ID              reduce using rule 12 (statement -> ID ASSIGN RECV LPAREN ID RPAREN SEMI .)
+    $end            reduce using rule 12 (statement -> ID ASSIGN RECV LPAREN ID RPAREN SEMI .)
+    RBRACE          reduce using rule 12 (statement -> ID ASSIGN RECV LPAREN ID RPAREN SEMI .)
+
+
+state 57
+
+    (11) statement -> SEND LPAREN ID COMMA expression RPAREN SEMI .
+
+    INT             reduce using rule 11 (statement -> SEND LPAREN ID COMMA expression RPAREN SEMI .)
+    CHAN            reduce using rule 11 (statement -> SEND LPAREN ID COMMA expression RPAREN SEMI .)
+    PARALLEL        reduce using rule 11 (statement -> SEND LPAREN ID COMMA expression RPAREN SEMI .)
+    SPAWN           reduce using rule 11 (statement -> SEND LPAREN ID COMMA expression RPAREN SEMI .)
+    LOCK            reduce using rule 11 (statement -> SEND LPAREN ID COMMA expression RPAREN SEMI .)
+    UNLOCK          reduce using rule 11 (statement -> SEND LPAREN ID COMMA expression RPAREN SEMI .)
+    ATOMIC          reduce using rule 11 (statement -> SEND LPAREN ID COMMA expression RPAREN SEMI .)
+    SEND            reduce using rule 11 (statement -> SEND LPAREN ID COMMA expression RPAREN SEMI .)
+    ID              reduce using rule 11 (statement -> SEND LPAREN ID COMMA expression RPAREN SEMI .)
+    $end            reduce using rule 11 (statement -> SEND LPAREN ID COMMA expression RPAREN SEMI .)
+    RBRACE          reduce using rule 11 (statement -> SEND LPAREN ID COMMA expression RPAREN SEMI .)
+

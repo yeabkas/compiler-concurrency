@@ -56,4 +56,9 @@ def t_error(t):
     t.lexer.skip(1)
 
 def build_lexer(**kwargs):
-    return lex.lex(module=__import__(__name__), **kwargs)
+    # Use importlib to get the actual module object for this name so PLY
+    # can find the token definitions even when this file is loaded as
+    # `concurrentlang.grammar.lexer`.
+    import importlib
+    mod = importlib.import_module(__name__)
+    return lex.lex(module=mod, **kwargs)

@@ -1,0 +1,8 @@
+{
+  "x": 0,
+  "c": {
+    "_type": "Channel",
+    "repr": "<concurrentlang.runtime.interpreter.Channel object at 0x00000287AAA08D70>",
+    "queue_size": 1
+  }
+}

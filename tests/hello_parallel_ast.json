@@ -1,0 +1,37 @@
+{
+  "_type": "Program",
+  "statements": [
+    {
+      "_type": "Assign",
+      "target": {
+        "_type": "Identifier",
+        "name": "x"
+      },
+      "expr": {
+        "_type": "Literal",
+        "value": 0
+      }
+    },
+    {
+      "_type": "ChannelDecl",
+      "name": "c",
+      "typ": "int"
+    },
+    {
+      "_type": "ParallelBlock",
+      "statements": [
+        {
+          "_type": "Send",
+          "chan": {
+            "_type": "Identifier",
+            "name": "c"
+          },
+          "value": {
+            "_type": "Literal",
+            "value": 42
+          }
+        }
+      ]
+    }
+  ]
+}

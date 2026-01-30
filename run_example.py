@@ -63,6 +63,14 @@ def main():
         print("Import error:", e)
         return
 
+    # Ensure tests directory exists and provide sensible default output paths
+    tests_dir = Path('tests')
+    tests_dir.mkdir(exist_ok=True)
+    if args.dump_state is None:
+        args.dump_state = str(tests_dir / (src_path.stem + "_state.json"))
+    if args.dump_ast is None:
+        args.dump_ast = str(tests_dir / (src_path.stem + "_ast.json"))
+
     # Build parser and lexer
     try:
         parser_obj, lexer = parser_mod.build_parser()
@@ -109,8 +117,42 @@ def main():
             import pprint
             pprint.pprint(interp.globals)
             if args.dump_state:
+                # Convert runtime objects (Channel, Lock, ThreadManager) into
+                # JSON-serializable representations.
+                def serialize(obj):
+                    # primitives
+                    if isinstance(obj, (str, int, float, bool)) or obj is None:
+                        return obj
+                    # dict
+                    if isinstance(obj, dict):
+                        return {k: serialize(v) for k, v in obj.items()}
+                    # list / tuple
+                    if isinstance(obj, (list, tuple)):
+                        return [serialize(i) for i in obj]
+                    # try to detect runtime types
+                    try:
+                        from concurrentlang.runtime.interpreter import Channel, Lock, ThreadManager
+                        if isinstance(obj, Channel):
+                            return {
+                                '_type': 'Channel',
+                                'repr': repr(obj),
+                                'queue_size': getattr(obj.q, 'qsize', lambda: None)(),
+                            }
+                        if isinstance(obj, Lock):
+                            return {'_type': 'Lock', 'repr': repr(obj)}
+                        if isinstance(obj, ThreadManager):
+                            return {'_type': 'ThreadManager', 'threads': len(getattr(obj, 'threads', []))}
+                    except Exception:
+                        pass
+                    # fallback
+                    try:
+                        return json.loads(json.dumps(obj))
+                    except Exception:
+                        return repr(obj)
+
+                serial = serialize(interp.globals)
                 with open(args.dump_state, 'w', encoding='utf-8') as f:
-                    json.dump(interp.globals, f, indent=2)
+                    json.dump(serial, f, indent=2)
                 print(f"Final state dumped to {args.dump_state}")
     except Exception as e:
         print("Interpreter error:", e)

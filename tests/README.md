@@ -1,4 +1,12 @@
 # ConcurrentLang Tests
+## Group 8
+Kal Tsegaye 
+Yonas Berhanu
+Yeabselam Kassaye
+Yeabsira Teklu
+Kalkidan Tesfaye
+Mohammed Siraj
+Sec A
 
 This directory contains test files for the ConcurrentLang compiler and interpreter.
 
